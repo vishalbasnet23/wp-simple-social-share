@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -44,8 +43,8 @@ class Social_Share_Admin {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param      string    $plugin_name       The name of this plugin.
-	 * @param      string    $version    The version of this plugin.
+	 * @param string $plugin_name	The name of this plugin.
+	 * @param string $version	The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
@@ -73,7 +72,7 @@ class Social_Share_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/social-share-admin.css', array(), $this->version, 'all' );
+		 wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/social-share-admin.css', array(), $this->version, 'all' );
 
 	}
 
@@ -92,12 +91,35 @@ class Social_Share_Admin {
 		 * in that particular class.
 		 *
 		 * The Social_Share_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
+		 * between the defined hooks and the functionsdefined in this
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/social-share-admin.js', array( 'jquery' ), $this->version, false );
+		 wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/social-share-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
-
+	/**
+	 * Add admin menu
+	 *
+	 * @return	void
+	 */
+	public  function social_share_admin_menu() {
+		add_menu_page(
+			__( 'Social Share Options', 'social-share' ),
+			__( 'Social Share', 'social-share' ),
+			'manage_options',
+			$this->plugin_name,
+			array( $this, 'social_share_options_page' ),
+			'',
+			6
+		);
+	}
+	/**
+	 * Callback function of admin_menu
+	 *
+	 * @return void
+	 */
+	function social_share_options_page() {
+		include_once 'partials/social-share-admin-display.php';
+	}
 }

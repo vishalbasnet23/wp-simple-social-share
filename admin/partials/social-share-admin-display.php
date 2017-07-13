@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Provide a admin area view for the plugin
  *
@@ -11,6 +10,8 @@
  * @package    Social_Share
  * @subpackage Social_Share/admin/partials
  */
+
 ?>
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
+<h1>Social Share Plugin</h1>
