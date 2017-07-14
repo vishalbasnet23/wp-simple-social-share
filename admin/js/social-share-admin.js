@@ -28,5 +28,8 @@
 	 * Although scripts in the WordPress core, Plugins and Themes may be
 	 * practising this, we should strive to set a better example in our own work.
 	 */
-
+	$( function() {
+		$( '#social-share-sortable' ).sortable();
+		$( '#social-share-sortable' ).disableSelection();
+	});
 })( jQuery );

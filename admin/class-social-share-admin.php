@@ -95,7 +95,8 @@ class Social_Share_Admin {
 		 * class.
 		 */
 
-		 wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/social-share-admin.js', array( 'jquery' ), $this->version, false );
+		 wp_enqueue_script( 'jquery-ui-sortable' );
+		 wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/social-share-admin.js', array( 'jquery', 'jquery-ui-sortable' ), $this->version, false );
 
 	}
 
@@ -234,19 +235,15 @@ class Social_Share_Admin {
 	 */
 	function social_media_buttons_callback() {
 		$toptal_social_share_options = get_option( 'toptal_social_share_options' );
-		$social_media_choices = array(
-			'facebook' => 'Facebook',
-			'twitter' => 'Twitter',
-			'g_plus' => 'Google Plus',
-			'pinterest' => 'Pinterest',
-			'linkedin' => 'Linkedin',
-			'whatsapp' => 'Whatsapp',
-		);
-		$social_media_choices_options = '<td>';
-		foreach ( $social_media_choices as $social_media_key => $social_media_value ) {
+		$social_media_choices = $this->prepare_sorted_social_media_choices();
+		$social_media_choices_options = '<td id="social-share-sortable">';
+		foreach ( $social_media_choices as $social_media_key ) {
+			$social_media_value = str_replace( '_', ' ', ucfirst( $social_media_key ) );
+			$social_media_choices_options .= '<div class="ui-state-default">';
 			$checked = in_array( $social_media_key, (array) $toptal_social_share_options['social_media_selection'] ) ? 'checked="checked"' : '';
 			$social_media_choices_options .= '<input type="checkbox" id="' . $social_media_key . '" name="toptal_social_share_options[social_media_selection][]"' . $checked . 'value="' . $social_media_key . '" />';
 			$social_media_choices_options .= '<label for="' . $social_media_key . '">' . $social_media_value . '</label> ';
+			$social_media_choices_options .= '</div>';
 		}
 		$social_media_choices_options .= '</td>';
 		echo $social_media_choices_options;
@@ -259,7 +256,7 @@ class Social_Share_Admin {
 	 */
 	function social_share_button_size_callback() {
 		$toptal_social_share_options = get_option( 'toptal_social_share_options' );
-		$selected_button_size = empty(  $toptal_social_share_options['button_size'] ) ? 'small' : $toptal_social_share_options['button_size'];
+		$selected_button_size = empty( $toptal_social_share_options['button_size'] ) ? 'small' : $toptal_social_share_options['button_size'];
 		$social_share_button_size_choices = array(
 			'small' => __( 'Small', 'social-share' ),
 			'medium' => __( 'Medium', 'social-share' ),
@@ -267,13 +264,13 @@ class Social_Share_Admin {
 		);
 		$social_share_button_size_option = '<td>';
 		foreach ( $social_share_button_size_choices as $button_size_key => $button_size_val ) {
-			$social_share_button_size_option .= '<input type="radio" id="' .$button_size_key . '" name="toptal_social_share_options[button_size]" value="' . $button_size_key . '" ' . checked( $selected_button_size, $button_size_key, false ) . ' />';
-			$social_share_button_size_option .= '<label for="' .$button_size_key . '">' . $button_size_val . '</label> ';
+			$social_share_button_size_option .= '<input type="radio" id="' . $button_size_key . '" name="toptal_social_share_options[button_size]" value="' . $button_size_key . '" ' . checked( $selected_button_size, $button_size_key, false ) . ' />';
+			$social_share_button_size_option .= '<label for="' . $button_size_key . '">' . $button_size_val . '</label> ';
 		}
 		$social_share_button_size_option .= '</td>';
 		echo $social_share_button_size_option;
-		$this->prepare_button_size_html( $selected_button_size );
 	}
+
 	/**
 	 * Callback for social media position
 	 *
@@ -296,14 +293,28 @@ class Social_Share_Admin {
 		$social_media_postion_options .= '</td>';
 		echo $social_media_postion_options;
 	}
+
 	/**
-	 * Prepares button size preview
+	 * Outputs array of sorted social media buttons
 	 *
-	 * @param  string $size selected button size setting.
-	 *
-	 * @return void
+	 * @return array $sorted_social_media sorted social media buttons.
 	 */
-	function prepare_button_size_html( $size ) {
-		echo $button_size_preview;
+	function prepare_sorted_social_media_choices() {
+		$toptal_social_share_options = get_option( 'toptal_social_share_options' );
+		$selected_social_media = $toptal_social_share_options['social_media_selection'];
+		$social_media_choices = array(
+			'facebook',
+			'twitter',
+			'google_plus',
+			'pinterest',
+			'linkedin',
+			'whatsapp',
+		);
+		if ( empty( $selected_social_media ) ) {
+			return $social_media_choices;
+		} else {
+			$sorted_social_media = array_merge( $selected_social_media, array_diff( $social_media_choices, $selected_social_media ) );
+			return $sorted_social_media;
+		}
 	}
 }

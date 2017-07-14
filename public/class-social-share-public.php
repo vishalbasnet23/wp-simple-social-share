@@ -134,6 +134,7 @@ class Social_Share_Public {
 			return $content;
 		}
 	}
+
 	/**
 	 * Outputs Social Share buttons inside featured Image
 	 *
@@ -149,6 +150,7 @@ class Social_Share_Public {
 		}
 		return $html;
 	}
+
 	/**
 	 * Outputs Social share buttons.
 	 *
