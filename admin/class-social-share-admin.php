@@ -236,13 +236,28 @@ class Social_Share_Admin {
 	function social_media_buttons_callback() {
 		$toptal_social_share_options = get_option( 'toptal_social_share_options' );
 		$social_media_choices = $this->prepare_sorted_social_media_choices();
+		$icon_size = $toptal_social_share_options['button_size'];
+		switch ( $icon_size ) {
+			case 'small':
+				$label_class = 'social-share-icon small-icon';
+				break;
+			case 'medium':
+				$label_class = 'social-share-icon medium-icon';
+				break;
+			case 'large':
+				$label_class = 'social-share-icon large-icon';
+				break;
+			default:
+				$label_class = 'social-share-icon small-icon';
+				break;
+		}
 		$social_media_choices_options = '<td id="social-share-sortable">';
 		foreach ( $social_media_choices as $social_media_key ) {
 			$social_media_value = str_replace( '_', ' ', ucfirst( $social_media_key ) );
 			$social_media_choices_options .= '<div class="ui-state-default">';
 			$checked = in_array( $social_media_key, (array) $toptal_social_share_options['social_media_selection'] ) ? 'checked="checked"' : '';
 			$social_media_choices_options .= '<input type="checkbox" id="' . $social_media_key . '" name="toptal_social_share_options[social_media_selection][]"' . $checked . 'value="' . $social_media_key . '" />';
-			$social_media_choices_options .= '<label for="' . $social_media_key . '">' . $social_media_value . '</label> ';
+			$social_media_choices_options .= '<label for="' . $social_media_key . '" class="' . $label_class . '">' . $social_media_value . '</label> ';
 			$social_media_choices_options .= '</div>';
 		}
 		$social_media_choices_options .= '</td>';
