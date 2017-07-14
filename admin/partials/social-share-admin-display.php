@@ -14,4 +14,14 @@
 ?>
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
-<h1>Social Share Plugin</h1>
+<form action='options.php' method='post'>
+
+<h2>Social Share</h2>
+
+	<?php
+		settings_fields( 'social-share' );
+		do_settings_sections( 'social-share' );
+		submit_button();
+	?>
+
+</form>

@@ -98,6 +98,7 @@ class Social_Share_Admin {
 		 wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/social-share-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
+
 	/**
 	 * Add admin menu
 	 *
@@ -114,6 +115,7 @@ class Social_Share_Admin {
 			6
 		);
 	}
+
 	/**
 	 * Callback function of admin_menu
 	 *
@@ -121,5 +123,187 @@ class Social_Share_Admin {
 	 */
 	function social_share_options_page() {
 		include_once 'partials/social-share-admin-display.php';
+	}
+
+	/**
+	 * Settings register on admin init
+	 *
+	 * @return void
+	 */
+	function social_share_settings_register() {
+		register_setting( $this->plugin_name, 'toptal_social_share_options' );
+
+		add_settings_section(
+			'toptal_social_share_social_media_selection_section',
+			__( 'Social Media Selection', 'social-share' ),
+			array( $this, 'toptal_social_share_social_media_selection_section_callback' ),
+			$this->plugin_name
+		);
+
+		add_settings_field(
+			'activate_social_share',
+			__( 'Enable social share', 'social-share' ),
+			array( $this, 'toptal_social_share_activate_callback' ),
+			$this->plugin_name,
+			'toptal_social_share_social_media_selection_section'
+		);
+
+		add_settings_field(
+			'social_media_show_on',
+			__( 'Social Share Show on', 'social-share' ),
+			array( $this, 'social_media_show_on_callback' ),
+			$this->plugin_name,
+			'toptal_social_share_social_media_selection_section'
+		);
+
+		add_settings_field(
+			'social_media_buttons',
+			__( 'Social Share Buttons', 'social-share' ),
+			array( $this, 'social_media_buttons_callback' ),
+			$this->plugin_name,
+			'toptal_social_share_social_media_selection_section'
+		);
+
+		add_settings_field(
+			'social_share_button_size',
+			__( 'Social Share Button Size', 'social-share' ),
+			array( $this, 'social_share_button_size_callback' ),
+			$this->plugin_name,
+			'toptal_social_share_social_media_selection_section'
+		);
+
+		add_settings_field(
+			'social_icon_display_position',
+			__( 'Social Media Display Position', 'social-share' ),
+			array( $this, 'social_share_media_position_callback' ),
+			$this->plugin_name,
+			'toptal_social_share_social_media_selection_section'
+		);
+	}
+
+	/**
+	 * Callback for toptal_social_share_social_media_selection_section
+	 *
+	 * @return void
+	 */
+	function toptal_social_share_social_media_selection_section_callback() {
+		echo __( 'Social Media Selection Section', 'social-share' );
+	}
+
+	/**
+	 * Callback to activate social share settings  description]
+	 *
+	 * @return void
+	 */
+	function toptal_social_share_activate_callback() {
+		$toptal_social_share_options = get_option( 'toptal_social_share_options' );
+		$activation_option = '<td>';
+		$activation_option .= '<input type="checkbox" id="activated" name="toptal_social_share_options[activated]"' . checked( $toptal_social_share_options['activated'], 'yes', false ) . ' value="yes"/>';
+		$activation_option .= '<label for="activated">' . __( 'Activate', 'social-share' ) . '</label>';
+		$activation_option .= '</td>';
+		echo $activation_option;
+	}
+
+	/**
+	 * Callback for show on setting
+	 *
+	 * @return void
+	 */
+	function social_media_show_on_callback() {
+		$toptal_social_share_options = get_option( 'toptal_social_share_options' );
+		$public_post_types = get_post_types(
+			array(
+				'public' => true,
+			),
+			'objects'
+		);
+		$social_media_show_on_options = '<td>';
+		foreach ( $public_post_types as $post_type ) {
+			$checked = in_array( $post_type->name, (array) $toptal_social_share_options['social_media_show_on'] ) ? 'checked="checked"' : '';
+			$social_media_show_on_options .= '<input type="checkbox" id="' . $post_type->name . '" name="toptal_social_share_options[social_media_show_on][]"' . $checked . 'value="' . $post_type->name . '" />';
+			$social_media_show_on_options .= '<label for="' . $post_type->name . '">' . $post_type->label . '</label> ';
+		}
+		$social_media_show_on_options .= '</td>';
+		echo $social_media_show_on_options;
+	}
+
+	/**
+	 * Social Media Button Settings Callback
+	 *
+	 * @return void
+	 */
+	function social_media_buttons_callback() {
+		$toptal_social_share_options = get_option( 'toptal_social_share_options' );
+		$social_media_choices = array(
+			'facebook' => 'Facebook',
+			'twitter' => 'Twitter',
+			'g_plus' => 'Google Plus',
+			'pinterest' => 'Pinterest',
+			'linkedin' => 'Linkedin',
+			'whatsapp' => 'Whatsapp',
+		);
+		$social_media_choices_options = '<td>';
+		foreach ( $social_media_choices as $social_media_key => $social_media_value ) {
+			$checked = in_array( $social_media_key, (array) $toptal_social_share_options['social_media_selection'] ) ? 'checked="checked"' : '';
+			$social_media_choices_options .= '<input type="checkbox" id="' . $social_media_key . '" name="toptal_social_share_options[social_media_selection][]"' . $checked . 'value="' . $social_media_key . '" />';
+			$social_media_choices_options .= '<label for="' . $social_media_key . '">' . $social_media_value . '</label> ';
+		}
+		$social_media_choices_options .= '</td>';
+		echo $social_media_choices_options;
+	}
+
+	/**
+	 * Callback for button size setting
+	 *
+	 * @return void
+	 */
+	function social_share_button_size_callback() {
+		$toptal_social_share_options = get_option( 'toptal_social_share_options' );
+		$selected_button_size = empty(  $toptal_social_share_options['button_size'] ) ? 'small' : $toptal_social_share_options['button_size'];
+		$social_share_button_size_choices = array(
+			'small' => __( 'Small', 'social-share' ),
+			'medium' => __( 'Medium', 'social-share' ),
+			'large' => __( 'Large', 'social-share' ),
+		);
+		$social_share_button_size_option = '<td>';
+		foreach ( $social_share_button_size_choices as $button_size_key => $button_size_val ) {
+			$social_share_button_size_option .= '<input type="radio" id="' .$button_size_key . '" name="toptal_social_share_options[button_size]" value="' . $button_size_key . '" ' . checked( $selected_button_size, $button_size_key, false ) . ' />';
+			$social_share_button_size_option .= '<label for="' .$button_size_key . '">' . $button_size_val . '</label> ';
+		}
+		$social_share_button_size_option .= '</td>';
+		echo $social_share_button_size_option;
+		$this->prepare_button_size_html( $selected_button_size );
+	}
+	/**
+	 * Callback for social media position
+	 *
+	 * @return void
+	 */
+	function social_share_media_position_callback() {
+		$toptal_social_share_options = get_option( 'toptal_social_share_options' );
+		$social_media_position_choices = array(
+			'below_post_title' => __( 'Below Post Title', 'social-share' ),
+			'floating_on_the_left_area' => __( 'Floating on the left area', 'social-share' ),
+			'after_the_post_content' => __( 'After the post content', 'social-share' ),
+			'inside_the_featured_image' => __( 'Inside the featured image', 'social-share' ),
+		);
+		$social_media_postion_options = '<td>';
+		foreach ( $social_media_position_choices as $position_key => $position_val ) {
+			$checked = in_array( $position_key, (array) $toptal_social_share_options['social_media_display_position'] ) ? 'checked="checked"' : '';
+			$social_media_postion_options .= '<input type="checkbox" id="' . $position_key . '" name="toptal_social_share_options[social_media_display_position][]"' . $checked . 'value="' . $position_key . '" />';
+			$social_media_postion_options .= '<label for="' . $position_key . '">' . $position_val . '</label> ';
+		}
+		$social_media_postion_options .= '</td>';
+		echo $social_media_postion_options;
+	}
+	/**
+	 * Prepares button size preview
+	 *
+	 * @param  string $size selected button size setting.
+	 *
+	 * @return void
+	 */
+	function prepare_button_size_html( $size ) {
+		echo $button_size_preview;
 	}
 }
