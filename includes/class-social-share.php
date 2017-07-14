@@ -171,6 +171,9 @@ class Social_Share {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+		$this->loader->add_filter( 'the_content', $plugin_public, 'social_share_before_content_display', 15 );
+		$this->loader->add_filter( 'the_content', $plugin_public, 'social_share_after_content_display', 20 );
+		$this->loader->add_filter( 'post_thumbnail_html', $plugin_public,  'social_share_inside_featured_image', 10 );
 
 	}
 
