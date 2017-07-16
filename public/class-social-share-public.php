@@ -176,28 +176,28 @@ class Social_Share_Public {
 					$display_class = 'ico-small';
 			}
 			ob_start();
-			$social_media_html = '<div class=" toptal-social-share ' . $display_class . '">';
+			$social_media_html = '<div class="toptal-social-share ' . $display_class . '">';
 			foreach ( $selected_social_media as $social_media ) {
 				switch ( $social_media ) {
 					case 'facebook':
 						$share_url = "https://www.facebook.com/sharer/sharer.php?u={$url}";
-						$social_media_html .= '<a href="javascript:void(0)" class="social-share-pop-up-button" data-url="' . $share_url . '" data-servicename="Facebook">' . __( 'Share on Facebook', 'social-share' ) . '</a>';
+						$social_media_html .= '<a href="javascript:void(0)" class="social-share-pop-up-button facebook-ico" data-url="' . $share_url . '" data-servicename="Facebook">' . __( 'Share on Facebook', 'social-share' ) . '</a>';
 						break;
 					case 'twitter':
 						$share_url = "https://twitter.com/home?status={$url}";
-						$social_media_html .= '<a href="javascript:void(0)" class="social-share-pop-up-button" data-url="' . $share_url . '" data-servicename="Twitter">' . __( 'Share on Twitter', 'social-share' ) . '</a>';
+						$social_media_html .= '<a href="javascript:void(0)" class="social-share-pop-up-button twitter-ico" data-url="' . $share_url . '" data-servicename="Twitter">' . __( 'Share on Twitter', 'social-share' ) . '</a>';
 						break;
 					case 'google_plus':
 						$share_url = "https://plus.google.com/share?url={$url}";
-						$social_media_html .= '<a href="javascript:void(0)" class="social-share-pop-up-button" data-url="' . $share_url . '" data-servicename="Google Plus">' . __( 'Share on Google Plus', 'social-share' ) . '</a>';
+						$social_media_html .= '<a href="javascript:void(0)" class="social-share-pop-up-button g-plus-ico" data-url="' . $share_url . '" data-servicename="Google Plus">' . __( 'Share on Google Plus', 'social-share' ) . '</a>';
 						break;
 					case 'linkedin':
 						$share_url = "https://www.linkedin.com/shareArticle?mini=true&url={$url}";
-						$social_media_html .= '<a href="javascript:void(0)" class="social-share-pop-up-button" data-url="' . $share_url . '" data-servicename="Linkedin">' . __( 'Share on Linkedin', 'social-share' ) . '</a>';
+						$social_media_html .= '<a href="javascript:void(0)" class="social-share-pop-up-button linkedin-ico" data-url="' . $share_url . '" data-servicename="Linkedin">' . __( 'Share on Linkedin', 'social-share' ) . '</a>';
 						break;
 					case 'pinterest':
 						$share_url = "https://pinterest.com/pin/create/button/?url=&media={$url}";
-						$social_media_html .= '<a href="javascript:void(0)" class="social-share-pop-up-button" data-url="' . $share_url . '" data-servicename="Pinterest">' . __( 'Share on Pinterest', 'social-share' ) . '</a>';
+						$social_media_html .= '<a href="javascript:void(0)" class="social-share-pop-up-button pinterest-ico" data-url="' . $share_url . '" data-servicename="Pinterest">' . __( 'Share on Pinterest', 'social-share' ) . '</a>';
 						break;
 					case 'whatsapp':
 						$share_url = "whatsapp://send?text={$url}";

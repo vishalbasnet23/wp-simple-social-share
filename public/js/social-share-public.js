@@ -37,9 +37,12 @@
 			var popUpName = $(this).data('servicename');
 			var popupWindow = window.open( shareUrl, popUpName || 'window' + Math.floor( Math.random() * 10000 + 1 ), 'menubar=0,location=0,toolbar=0,status=0,scrollbars=1, width='+width+',height='+height );
 			if( window.focus ) {
-			popupWindow.focus;
-		}
+				popupWindow.focus;
+			}
 		});
+		if( !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+			$( '.whatsapp-mobile-only' ).remove();
+		}
 	});
 
 })( jQuery );
