@@ -28,5 +28,18 @@
 	 * Although scripts in the WordPress core, Plugins and Themes may be
 	 * practising this, we should strive to set a better example in our own work.
 	 */
+	$(function(){
+		$( 'body' ).on( 'click', 'a.social-share-pop-up-button', function(e) {
+			e.preventDefault();
+			var width = 600;
+			var height = 400;
+			var shareUrl = $(this).data( 'url' );
+			var popUpName = $(this).data('servicename');
+			var popupWindow = window.open( shareUrl, popUpName || 'window' + Math.floor( Math.random() * 10000 + 1 ), 'menubar=0,location=0,toolbar=0,status=0,scrollbars=1, width='+width+',height='+height );
+			if( window.focus ) {
+			popupWindow.focus;
+		}
+		});
+	});
 
 })( jQuery );

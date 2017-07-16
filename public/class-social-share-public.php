@@ -157,6 +157,7 @@ class Social_Share_Public {
 	 * @return string $social_media_output share buttons html.
 	 */
 	function prepare_social_media_output() {
+		$url = rawurlencode( get_permalink() );
 		$toptal_social_share_options = get_option( 'toptal_social_share_options' );
 		$activated = $toptal_social_share_options['activated'];
 		$social_media_show_on = $toptal_social_share_options['social_media_show_on'];
@@ -177,7 +178,36 @@ class Social_Share_Public {
 			ob_start();
 			$social_media_html = '<div class=" toptal-social-share ' . $display_class . '">';
 			foreach ( $selected_social_media as $social_media ) {
-				$social_media_html .= '<a href="javascript:void(0);">' . $social_media . '</a>';
+				switch ( $social_media ) {
+					case 'facebook':
+						$share_url = "https://www.facebook.com/sharer/sharer.php?u={$url}";
+						$social_media_html .= '<a href="javascript:void(0)" class="social-share-pop-up-button" data-url="' . $share_url . '" data-servicename="Facebook">' . __( 'Share on Facebook', 'social-share' ) . '</a>';
+						break;
+					case 'twitter':
+						$share_url = "https://twitter.com/home?status={$url}";
+						$social_media_html .= '<a href="javascript:void(0)" class="social-share-pop-up-button" data-url="' . $share_url . '" data-servicename="Twitter">' . __( 'Share on Twitter', 'social-share' ) . '</a>';
+						break;
+					case 'google_plus':
+						$share_url = "https://plus.google.com/share?url={$url}";
+						$social_media_html .= '<a href="javascript:void(0)" class="social-share-pop-up-button" data-url="' . $share_url . '" data-servicename="Google Plus">' . __( 'Share on Google Plus', 'social-share' ) . '</a>';
+						break;
+					case 'linkedin':
+						$share_url = "https://www.linkedin.com/shareArticle?mini=true&url={$url}";
+						$social_media_html .= '<a href="javascript:void(0)" class="social-share-pop-up-button" data-url="' . $share_url . '" data-servicename="Linkedin">' . __( 'Share on Linkedin', 'social-share' ) . '</a>';
+						break;
+					case 'pinterest':
+						$share_url = "https://pinterest.com/pin/create/button/?url=&media={$url}";
+						$social_media_html .= '<a href="javascript:void(0)" class="social-share-pop-up-button" data-url="' . $share_url . '" data-servicename="Pinterest">' . __( 'Share on Pinterest', 'social-share' ) . '</a>';
+						break;
+					case 'whatsapp':
+						$share_url = "whatsapp://send?text={$url}";
+						$social_media_html .= '<a href="javascript:void(0)" class="social-share-pop-up-button whatsapp-mobile-only" data-url="' . $share_url . '" data-servicename="WhatsApp">' . __( 'Share on WhatsApp', 'social-share' ) . '</a>';
+						break;
+
+					default:
+						$social_media_html .= '<a>' . $social_media . '</a>';
+						break;
+				}
 			}
 			$social_media_html .= '</div>';
 			$social_media_html .= ob_get_contents();

@@ -33,7 +33,7 @@
 		$( '#social-share-sortable' ).disableSelection();
 		$( 'body' ).on( 'click', 'input[name="toptal_social_share_options[button_size]"]', function() {
 			var selectedValue = $(this).val();
-			$('label.social-share-icon').attr( 'class', 'social-share-icon' ).addClass(selectedValue+'-icon');
-		} );
+			$( 'label.social-share-icon' ).attr( 'class', 'social-share-icon' ).addClass( selectedValue+'-icon' );
+		});
 	});
 })( jQuery );
