@@ -269,6 +269,7 @@ class Social_Share_Admin {
 			$social_media_choices_options .= '<label for="' . $social_media_key . '" class="' . $label_class . ' ' . $social_media_key . '">&nbsp;</label> ';
 			$social_media_choices_options .= '</div>';
 		}
+		$social_media_choices_options .= '<p>' . __( 'Drag the social icons to change the order', 'social-share' ) . '</p>';
 		$social_media_choices_options .= '</td>';
 		echo $social_media_choices_options;
 	}

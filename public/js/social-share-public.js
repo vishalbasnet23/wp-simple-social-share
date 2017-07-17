@@ -60,9 +60,7 @@
 		        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
 		    }
 		};
-		console.log(isMobile.any());
 		if( isMobile.any() === null ) {
-			console.log('here');
 			$( '.whatsapp-mobile-only' ).remove();
 		}
 		$('.has-social-share').parent('div').addClass('has-social-share-image-wrapper');
