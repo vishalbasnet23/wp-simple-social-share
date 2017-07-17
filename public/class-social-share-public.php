@@ -229,7 +229,8 @@ class Social_Share_Public {
 						$social_media_html .= '<a href="javascript:void(0)" class="social-share-pop-up-button linkedin-ico" data-url="' . $share_url . '" data-servicename="Linkedin">&nbsp;</a>';
 						break;
 					case 'pinterest':
-						$share_url = "https://pinterest.com/pin/create/button/?url=&media={$url}";
+						$featured_media_url = get_the_post_thumbnail_url( get_the_ID(), 'full' );
+						$share_url = "https://pinterest.com/pin/create/button/?url={$url}&media={$featured_media_url}";
 						$social_media_html .= '<a href="javascript:void(0)" class="social-share-pop-up-button pinterest-ico" data-url="' . $share_url . '" data-servicename="Pinterest">&nbsp;</a>';
 						break;
 					case 'whatsapp':

@@ -111,8 +111,16 @@
 div.has-social-share-image-wrapper {
 	position: relative;
 }
+
 .toptal-social-share.inside-image {
     position: absolute;
     top: 0px;
     right: 0px;
+}
+
+.toptal-social-share.floating-left {
+	float: left;
+	position: fixed;
+    top: 50%;
+    width: 40px;
 }

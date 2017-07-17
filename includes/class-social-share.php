@@ -175,6 +175,7 @@ class Social_Share {
 		$this->loader->add_filter( 'the_content', $plugin_public, 'social_share_after_content_display', 20 );
 		$this->loader->add_filter( 'post_thumbnail_html', $plugin_public,  'social_share_inside_featured_image', 10 );
 		$this->loader->add_filter( 'wp_get_attachment_image_attributes', $plugin_public, 'social_share_featured_image_extra_class' );
+		$this->loader->add_action( 'wp_footer', $plugin_public, 'social_share_floating_button' );
 
 	}
 
