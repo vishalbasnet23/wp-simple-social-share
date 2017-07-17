@@ -259,7 +259,7 @@ class Social_Share_Admin {
 				$label_class = 'social-share-icon small-icon';
 				break;
 		}
-		$label_class .= ( 'grayscale' === $icon_style ) ? ' grayscale' : ' colored';
+		$label_class .= ' ' . $icon_style;
 		$social_media_choices_options = '<td id="social-share-sortable">';
 		foreach ( $social_media_choices as $social_media_key ) {
 			$social_media_value = str_replace( '_', ' ', ucfirst( $social_media_key ) );
@@ -294,6 +294,12 @@ class Social_Share_Admin {
 		$social_share_button_size_option .= '</td>';
 		echo $social_share_button_size_option;
 	}
+
+	/**
+	 * Callback for button style setting
+	 *
+	 * @return void
+	 */
 	function social_share_button_style_callback() {
 		$toptal_social_share_options = get_option( 'toptal_social_share_options' );
 		$selected_button_style = empty( $toptal_social_share_options['button_style'] ) ? 'colored' : $toptal_social_share_options['button_style'];
@@ -309,6 +315,7 @@ class Social_Share_Admin {
 		$social_share_button_style_option .= '</td>';
 		echo $social_share_button_style_option;
 	}
+
 	/**
 	 * Callback for social media position
 	 *

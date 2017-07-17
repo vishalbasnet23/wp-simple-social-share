@@ -101,3 +101,7 @@
 #social-share-sortable label.grayscale:hover {
 	background-position-y: -48px;
 }
+
+#social-share-sortable label:hover {
+	cursor: move;
+}

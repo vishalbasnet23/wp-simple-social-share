@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The public-facing functionality of the plugin.
  *
@@ -110,13 +109,14 @@ class Social_Share_Public {
 	function social_share_before_content_display( $content ) {
 		$toptal_social_share_options = get_option( 'toptal_social_share_options' );
 		$social_media_display_position = $toptal_social_share_options['social_media_display_position'];
-		$social_media_output = $this->prepare_social_media_output();
+		$social_media_output = $this->prepare_social_media_output( 'below-post-title' );
 		if ( in_array( 'below_post_title', $social_media_display_position ) ) {
 			return $social_media_output . $content;
 		} else {
 			return $content;
 		}
 	}
+
 
 	/**
 	 * Outputs Share button after content
@@ -127,7 +127,7 @@ class Social_Share_Public {
 	function social_share_after_content_display( $content ) {
 		$toptal_social_share_options = get_option( 'toptal_social_share_options' );
 		$social_media_display_position = $toptal_social_share_options['social_media_display_position'];
-		$social_media_output = $this->prepare_social_media_output();
+		$social_media_output = $this->prepare_social_media_output( 'after-post-content' );
 		if ( in_array( 'after_the_post_content', $social_media_display_position ) ) {
 			return $content . $social_media_output;
 		} else {
@@ -136,15 +136,30 @@ class Social_Share_Public {
 	}
 
 	/**
+	 * Adds extra class to image
+	 *
+	 * @param  array $attr attributes of images.
+	 * @return array  array with class manipulated.
+	 */
+	function social_share_featured_image_extra_class( $attr ) {
+		$toptal_social_share_options = get_option( 'toptal_social_share_options' );
+		$social_media_display_position = $toptal_social_share_options['social_media_display_position'];
+		if ( in_array( 'inside_the_featured_image', $social_media_display_position ) ) {
+			$attr['class']	.= ' has-social-share';
+		}
+		return $attr;
+	}
+
+	/**
 	 * Outputs Social Share buttons inside featured Image
 	 *
-	 * @param  string $html original image wrapper HTML.
-	 * @return string $html manipulated image wrapper.
+	 * @param 	string $html original image wrapper HTML.
+	 * @return	string	$html manipulated image wrapper.
 	 */
 	function social_share_inside_featured_image( $html ) {
 		$toptal_social_share_options = get_option( 'toptal_social_share_options' );
 		$social_media_display_position = $toptal_social_share_options['social_media_display_position'];
-		$social_media_output = $this->prepare_social_media_output();
+		$social_media_output = $this->prepare_social_media_output( 'inside-image' );
 		if ( in_array( 'inside_the_featured_image', $social_media_display_position ) ) {
 			$html .= $social_media_output;
 		}
@@ -152,56 +167,74 @@ class Social_Share_Public {
 	}
 
 	/**
+	 * Outputs Social Share button floating on left handside.
+	 *
+	 * @return void
+	 */
+	function social_share_floating_button() {
+		$toptal_social_share_options = get_option( 'toptal_social_share_options' );
+		$social_media_display_position = $toptal_social_share_options['social_media_display_position'];
+		$social_media_output = $this->prepare_social_media_output( 'floating-left' );
+		if ( in_array( 'floating_on_the_left_area', $social_media_display_position ) ) {
+			echo $social_media_output;
+		}
+	}
+
+	/**
 	 * Outputs Social share buttons.
 	 *
+	 * @param string $where display position of share buttons.
 	 * @return string $social_media_output share buttons html.
 	 */
-	function prepare_social_media_output() {
+	function prepare_social_media_output( $where = 'shortcode' ) {
 		$url = rawurlencode( get_permalink() );
 		$toptal_social_share_options = get_option( 'toptal_social_share_options' );
 		$activated = $toptal_social_share_options['activated'];
 		$social_media_show_on = $toptal_social_share_options['social_media_show_on'];
 		$button_size = $toptal_social_share_options['button_size'];
+		$button_style = $toptal_social_share_options['button_style'];
 		$selected_social_media = $toptal_social_share_options['social_media_selection'];
 		$social_media_display_position = $toptal_social_share_options['social_media_display_position'];
-		if ( ( 'yes' === $activated ) && is_singular( $social_media_show_on ) ) {
+		if ( ( 'yes' === $activated ) &&  is_singular( $social_media_show_on ) ) {
 			switch ( $button_size ) {
 				case 'medium' :
-					$display_class = 'ico-medium';
+					$display_class = 'medium-icon';
 					break;
 				case 'large' :
-					$display_class = 'ico-large';
+					$display_class = 'large-icon';
 					break;
 				default :
-					$display_class = 'ico-small';
+					$display_class = 'small-icon';
 			}
+			$display_class .= ' ' . $button_style . ' ' . $where;
+
 			ob_start();
 			$social_media_html = '<div class="toptal-social-share ' . $display_class . '">';
 			foreach ( $selected_social_media as $social_media ) {
 				switch ( $social_media ) {
 					case 'facebook':
 						$share_url = "https://www.facebook.com/sharer/sharer.php?u={$url}";
-						$social_media_html .= '<a href="javascript:void(0)" class="social-share-pop-up-button facebook-ico" data-url="' . $share_url . '" data-servicename="Facebook">' . __( 'Share on Facebook', 'social-share' ) . '</a>';
+						$social_media_html .= '<a href="javascript:void(0)" class="social-share-pop-up-button facebook-ico" data-url="' . $share_url . '" data-servicename="Facebook">&nbsp;</a>';
 						break;
 					case 'twitter':
 						$share_url = "https://twitter.com/home?status={$url}";
-						$social_media_html .= '<a href="javascript:void(0)" class="social-share-pop-up-button twitter-ico" data-url="' . $share_url . '" data-servicename="Twitter">' . __( 'Share on Twitter', 'social-share' ) . '</a>';
+						$social_media_html .= '<a href="javascript:void(0)" class="social-share-pop-up-button twitter-ico" data-url="' . $share_url . '" data-servicename="Twitter">&nbsp;</a>';
 						break;
 					case 'google_plus':
 						$share_url = "https://plus.google.com/share?url={$url}";
-						$social_media_html .= '<a href="javascript:void(0)" class="social-share-pop-up-button g-plus-ico" data-url="' . $share_url . '" data-servicename="Google Plus">' . __( 'Share on Google Plus', 'social-share' ) . '</a>';
+						$social_media_html .= '<a href="javascript:void(0)" class="social-share-pop-up-button g-plus-ico" data-url="' . $share_url . '" data-servicename="Google Plus">&nbsp;</a>';
 						break;
 					case 'linkedin':
 						$share_url = "https://www.linkedin.com/shareArticle?mini=true&url={$url}";
-						$social_media_html .= '<a href="javascript:void(0)" class="social-share-pop-up-button linkedin-ico" data-url="' . $share_url . '" data-servicename="Linkedin">' . __( 'Share on Linkedin', 'social-share' ) . '</a>';
+						$social_media_html .= '<a href="javascript:void(0)" class="social-share-pop-up-button linkedin-ico" data-url="' . $share_url . '" data-servicename="Linkedin">&nbsp;</a>';
 						break;
 					case 'pinterest':
 						$share_url = "https://pinterest.com/pin/create/button/?url=&media={$url}";
-						$social_media_html .= '<a href="javascript:void(0)" class="social-share-pop-up-button pinterest-ico" data-url="' . $share_url . '" data-servicename="Pinterest">' . __( 'Share on Pinterest', 'social-share' ) . '</a>';
+						$social_media_html .= '<a href="javascript:void(0)" class="social-share-pop-up-button pinterest-ico" data-url="' . $share_url . '" data-servicename="Pinterest">&nbsp;</a>';
 						break;
 					case 'whatsapp':
 						$share_url = "whatsapp://send?text={$url}";
-						$social_media_html .= '<a href="javascript:void(0)" class="social-share-pop-up-button whatsapp-mobile-only" data-url="' . $share_url . '" data-servicename="WhatsApp">' . __( 'Share on WhatsApp', 'social-share' ) . '</a>';
+						$social_media_html .= '<a href="javascript:void(0)" class="social-share-pop-up-button whatsapp-mobile-only" data-url="' . $share_url . '" data-servicename="WhatsApp">&nbsp;</a>';
 						break;
 
 					default:
@@ -212,7 +245,7 @@ class Social_Share_Public {
 			$social_media_html .= '</div>';
 			$social_media_html .= ob_get_contents();
 			ob_end_clean();
-		}
+		} // End if().
 		return $social_media_html;
 	}
 

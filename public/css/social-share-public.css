@@ -2,3 +2,117 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
+
+
+/**
+  * All of the CSS for your admin-specific functionality should be
+  * included in this file.
+  */
+
+.toptal-social-share a {
+	-webkit-transition: all ease 0.3s;
+	-moz-transition: all ease 0.3s;
+	-o-transition: all ease 0.3s;
+	-ms-transition: all ease 0.3s;
+	transition: all ease 0.3s;
+	height: 40px;
+}
+
+.toptal-social-share a.twitter-ico {
+	display: inline-block;
+	background: url('../images/socialshare.png') no-repeat scroll 0 0 transparent;
+	background-position: -1px -48px;
+	width: 44px;
+}
+
+.toptal-social-share a.facebook-ico {
+	display: inline-block;
+	background: url('../images/socialshare.png') no-repeat scroll 0 0 transparent;
+	background-position: -90px -48px;
+	width: 44px;
+}
+
+.toptal-social-share a.linkedin-ico {
+	display: inline-block;
+	background: url('../images/socialshare.png') no-repeat scroll 0 0 transparent;
+	background-position: -135px -48px;
+	width: 44px;
+}
+
+.toptal-social-share a.g-plus-ico {
+	display: inline-block;
+	background: url('../images/socialshare.png') no-repeat scroll 0 0 transparent;
+	background-position: -46px -48px;
+	width: 44px;
+}
+
+.toptal-social-share a.pinterest-ico {
+	display: inline-block;
+	background: url('../images/socialshare.png') no-repeat scroll 0 0 transparent;
+	background-position: -179px -48px;
+	width: 44px;
+}
+
+.toptal-social-share a.whatsapp-ico {
+	display: inline-block;
+	background: url('../images/socialshare.png') no-repeat scroll 0 0 transparent;
+	background-position: -223px -48px;
+	width: 44px;
+}
+
+.toptal-social-share.small-icon a {
+	zoom: 0.5;
+}
+
+.toptal-social-share.medium-icon a {
+	zoom: 1;
+}
+
+.toptal-social-share.large-icon a {
+	zoom: 1.5;
+}
+
+.toptal-social-share.grayscale a.twitter-ico {
+	background-position: -1px 0px;
+}
+
+.toptal-social-share.grayscale a.facebook-ico {
+	background-position: -90px 0px;
+}
+
+.toptal-social-share.grayscale a.linkedin-ico {
+	background-position: -135px 0px;
+}
+
+.toptal-social-share.grayscale a.g-plus-ico {
+	background-position: -46px 0px;
+}
+
+.toptal-social-share.grayscale a.pinterest-ico {
+	background-position: -179px 0px;
+}
+
+.toptal-social-share.grayscale a.whatsapp-ico {
+	background-position: -223px -2px;
+}
+
+.toptal-social-share.colored a:hover {
+	background-position-y: 0px;
+}
+
+.toptal-social-share.colored a.whatsapp-ico:hover {
+	background-position-y: -2px;
+}
+
+.toptal-social-share.grayscale a:hover {
+	background-position-y: -48px;
+}
+
+div.has-social-share-image-wrapper {
+	position: relative;
+}
+.toptal-social-share.inside-image {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}

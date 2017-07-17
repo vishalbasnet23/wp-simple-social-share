@@ -43,6 +43,7 @@
 		if( !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 			$( '.whatsapp-mobile-only' ).remove();
 		}
+		$('.has-social-share').parent('div').addClass('has-social-share-image-wrapper');
 	});
 
 })( jQuery );
