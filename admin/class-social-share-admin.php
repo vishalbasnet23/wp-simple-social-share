@@ -259,9 +259,7 @@ class Social_Share_Admin {
 				$label_class = 'social-share-icon small-icon';
 				break;
 		}
-		if ( 'grayscale' === $icon_style ) {
-			$label_class .= ' grayscale';
-		}
+		$label_class .= ( 'grayscale' === $icon_style ) ? ' grayscale' : ' colored';
 		$social_media_choices_options = '<td id="social-share-sortable">';
 		foreach ( $social_media_choices as $social_media_key ) {
 			$social_media_value = str_replace( '_', ' ', ucfirst( $social_media_key ) );

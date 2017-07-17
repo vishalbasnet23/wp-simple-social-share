@@ -2,7 +2,13 @@
  * All of the CSS for your admin-specific functionality should be
  * included in this file.
  */
-
+#social-share-sortable label {
+	-webkit-transition: all ease 0.3s;
+	-moz-transition: all ease 0.3s;
+	-o-transition: all ease 0.3s;
+	-ms-transition: all ease 0.3s;
+	transition: all ease 0.3s;
+}
 #social-share-sortable label.twitter {
 	display: inline-block;
 	padding-left: 0px;
@@ -82,4 +88,16 @@
 }
 #social-share-sortable label.whatsapp.grayscale {
 	background-position: -223px -2px;
+}
+
+#social-share-sortable label.colored:hover {
+	background-position-y: 0px;
+}
+
+#social-share-sortable label.whatsapp.colored:hover {
+	background-position-y: -2px;
+}
+
+#social-share-sortable label.grayscale:hover {
+	background-position-y: -48px;
 }
