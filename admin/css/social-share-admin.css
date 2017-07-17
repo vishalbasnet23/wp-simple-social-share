@@ -2,3 +2,84 @@
  * All of the CSS for your admin-specific functionality should be
  * included in this file.
  */
+
+#social-share-sortable label.twitter {
+	display: inline-block;
+	padding-left: 0px;
+	line-height: 40px;
+	background: url('../images/socialshare.png') no-repeat scroll 0 0 transparent;
+	background-position: -1px -48px;
+	width: 44px;
+}
+
+#social-share-sortable label.facebook {
+	display: inline-block;
+	padding-left: 0px;
+	line-height: 40px;
+	background: url('../images/socialshare.png') no-repeat scroll 0 0 transparent;
+	background-position: -90px -48px;
+	width: 44px;
+}
+#social-share-sortable label.linkedin {
+	display: inline-block;
+	padding-left: 0px;
+	line-height: 40px;
+	background: url('../images/socialshare.png') no-repeat scroll 0 0 transparent;
+	background-position: -135px -48px;
+	width: 44px;
+}
+#social-share-sortable label.google_plus {
+	display: inline-block;
+	padding-left: 0px;
+	line-height: 40px;
+	background: url('../images/socialshare.png') no-repeat scroll 0 0 transparent;
+	background-position: -46px -48px;
+	width: 44px;
+}
+#social-share-sortable label.pinterest {
+	display: inline-block;
+	padding-left: 0px;
+	line-height: 40px;
+	background: url('../images/socialshare.png') no-repeat scroll 0 0 transparent;
+	background-position: -179px -48px;
+	width: 44px;
+}
+#social-share-sortable label.whatsapp {
+	display: inline-block;
+	padding-left: 0px;
+	line-height: 40px;
+	background: url('../images/socialshare.png') no-repeat scroll 0 0 transparent;
+	background-position: -223px -48px;
+	width: 44px;
+}
+
+#social-share-sortable label.small-icon {
+	zoom: 0.5;
+}
+
+#social-share-sortable label.medium-icon {
+	zoom: 1;
+}
+
+#social-share-sortable label.large-icon {
+	zoom: 1.5;
+}
+
+#social-share-sortable label.twitter.grayscale {
+    background-position: -1px 0px;
+}
+#social-share-sortable label.facebook.grayscale {
+	background-position: -90px 0px;
+}
+#social-share-sortable label.linkedin.grayscale {
+	background-position: -135px 0px;
+}
+#social-share-sortable label.google_plus.grayscale {
+	background-position: -46px 0px;
+}
+#social-share-sortable label.pinterest.grayscale {
+	background-position: -179px 0px;
+}
+#social-share-sortable label.whatsapp.grayscale {
+	background-position: -223px -2px;
+}
