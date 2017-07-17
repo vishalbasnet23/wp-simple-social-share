@@ -1,12 +1,6 @@
 <?php
-
 /**
- * The plugin bootstrap file
- *
- * This file is read by WordPress to generate the plugin information in the plugin
- * admin area. This file also includes all of the dependencies used by the plugin,
- * registers the activation and deactivation functions, and defines a function
- * that starts the plugin.
+ * Plugin Main file
  *
  * @link              http://git.toptal.com/Bishal-Basnet/bishal-basnet
  * @since             1.0.0
@@ -15,7 +9,7 @@
  * @wordpress-plugin
  * Plugin Name:       Social Share
  * Plugin URI:        http://git.toptal.com/Bishal-Basnet/bishal-basnet
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:      Adds simple yet attractive responsive social sharing buttons of Facebook, Twitter, Linkedin, Pinterest, WhatsApp( Mobile Devices only ) and Google+ to wordpress posts, pages, media or other registered custom post types.
  * Version:           1.0.0
  * Author:            Bishal Basnet
  * Author URI:        http://git.toptal.com/Bishal-Basnet/bishal-basnet
