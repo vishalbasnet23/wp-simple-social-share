@@ -235,7 +235,7 @@ class Social_Share_Public {
 						break;
 					case 'whatsapp':
 						$share_url = "whatsapp://send?text={$url}";
-						$social_media_html .= '<a href="javascript:void(0)" class="social-share-pop-up-button whatsapp-mobile-only" data-url="' . $share_url . '" data-servicename="WhatsApp">&nbsp;</a>';
+						$social_media_html .= '<a href="javascript:void(0)" class="social-share-pop-up-button whatsapp-mobile-only whatsapp-ico" data-url="' . $share_url . '" data-servicename="WhatsApp">&nbsp;</a>';
 						break;
 
 					default:

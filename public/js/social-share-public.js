@@ -40,7 +40,29 @@
 				popupWindow.focus;
 			}
 		});
-		if( !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+		var isMobile = {
+		    Android: function() {
+		        return navigator.userAgent.match(/Android/i);
+		    },
+		    BlackBerry: function() {
+		        return navigator.userAgent.match(/BlackBerry/i);
+		    },
+		    iOS: function() {
+		        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+		    },
+		    Opera: function() {
+		        return navigator.userAgent.match(/Opera Mini/i);
+		    },
+		    Windows: function() {
+		        return navigator.userAgent.match(/IEMobile/i);
+		    },
+		    any: function() {
+		        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+		    }
+		};
+		console.log(isMobile.any());
+		if( isMobile.any() === null ) {
+			console.log('here');
 			$( '.whatsapp-mobile-only' ).remove();
 		}
 		$('.has-social-share').parent('div').addClass('has-social-share-image-wrapper');
