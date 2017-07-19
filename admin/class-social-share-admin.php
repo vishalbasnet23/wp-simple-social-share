@@ -336,6 +336,7 @@ class Social_Share_Admin {
 			$social_media_postion_options .= '<input type="checkbox" id="' . $position_key . '" name="toptal_social_share_options[social_media_display_position][]"' . $checked . 'value="' . $position_key . '" />';
 			$social_media_postion_options .= '<label for="' . $position_key . '">' . $position_val . '</label> ';
 		}
+		$social_media_postion_options .= '<p>' . __( 'Or you can use this shortcode [toptal-social-share]', 'social-share' ) . '</p>';
 		$social_media_postion_options .= '</td>';
 		echo $social_media_postion_options;
 	}
