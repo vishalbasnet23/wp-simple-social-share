@@ -247,8 +247,9 @@ class Social_Share_Public {
 			$social_media_html .= '</div>';
 			$social_media_html .= ob_get_contents();
 			ob_end_clean();
-		} // End if().
-		return $social_media_html;
+			return $social_media_html;
+		}  // End if().
+		return false;
 	}
 
 }
