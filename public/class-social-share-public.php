@@ -2,7 +2,7 @@
 /**
  * The public-facing functionality of the plugin.
  *
- * @link       http://git.toptal.com/Bishal-Basnet/bishal-basnet
+ * @link       https://codeable.io/developers/bishal
  * @since      1.0.0
  *
  * @package    Social_Share

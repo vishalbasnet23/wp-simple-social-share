@@ -6,7 +6,7 @@
  * Loads and defines the internationalization files for this plugin
  * so that it is ready for translation.
  *
- * @link       http://git.toptal.com/Bishal-Basnet/bishal-basnet
+ * @link       https://codeable.io/developers/bishal
  * @since      1.0.0
  *
  * @package    Social_Share

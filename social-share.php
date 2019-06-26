@@ -2,17 +2,17 @@
 /**
  * Plugin Main file
  *
- * @link              http://git.toptal.com/Bishal-Basnet/bishal-basnet
+ * @link              https://codeable.io/developers/bishal
  * @since             1.0.0
  * @package           Social_Share
  *
  * @wordpress-plugin
  * Plugin Name:       Social Share
- * Plugin URI:        http://git.toptal.com/Bishal-Basnet/bishal-basnet
+ * Plugin URI:        https://codeable.io/developers/bishal
  * Description:      Adds simple yet attractive responsive social sharing buttons of Facebook, Twitter, Linkedin, Pinterest, WhatsApp( Mobile Devices only ) and Google+ to wordpress posts, pages, media or other registered custom post types.
  * Version:           1.0.0
  * Author:            Bishal Basnet
- * Author URI:        http://git.toptal.com/Bishal-Basnet/bishal-basnet
+ * Author URI:        https://codeable.io/developers/bishal
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       social-share

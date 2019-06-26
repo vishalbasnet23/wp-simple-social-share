@@ -5,7 +5,7 @@
  *
  * This file is used to markup the public-facing aspects of the plugin.
  *
- * @link       http://git.toptal.com/Bishal-Basnet/bishal-basnet
+ * @link       https://codeable.io/developers/bishal
  * @since      1.0.0
  *
  * @package    Social_Share
