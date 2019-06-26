@@ -6,7 +6,7 @@
  * A class definition that includes attributes and functions used across both the
  * public-facing side of the site and the admin area.
  *
- * @link       http://git.toptal.com/Bishal-Basnet/bishal-basnet
+ * @link       https://codeable.io/developers/bishal
  * @since      1.0.0
  *
  * @package    Social_Share

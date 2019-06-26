@@ -1,6 +1,6 @@
 === Plugin Name ===
 Contributors: vishalbasnet23
-Donate link: http://git.toptal.com/Bishal-Basnet/bishal-basnet
+Donate link: https://codeable.io/developers/bishal
 Tags: responsive social buttons, responsive social sharing buttons, responsive button, social buttons, social sharing, sharing buttons, twitter share, WhatsApp share, googleplus share, facebook share, linkedin share, pinterest share, share button for custom post type
 Requires at least: 3.0.1
 Tested up to: 4.8
